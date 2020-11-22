@@ -7,8 +7,7 @@ conn = mysql.connector.connect(user='root',password='root_password',host='69.121
 
 cursor = conn.cursor()
 
-cursor.execute('SELECT * FROM ticketingSystem.test')
+cursor.execute('SELECT id FROM ticketingSystem.users')
 
 for row in cursor:
     print(row)
-    
