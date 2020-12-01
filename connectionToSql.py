@@ -34,6 +34,18 @@ def updateStatusOfTicket(ticketID, ticketStatus):
         ticketStatus = 'Open'
     cursor.execute("UPDATE ticketingSystem.tickets SET status = '%s' WHERE ID = %s" % (str(ticketStatus), str(ticketID)))
 
+def doesUserExist(userName): 
+    cursor.execute("SELECT * FROM ticketingSystem.users WHERE userName = '%s'" % str(userName))
+    
+    user = []
+    for row in cursor:
+        user.append(row)
+    
+    if len(user) == 0:
+        return False
+    else:
+        return True
+
 searcher = "closed"
 
 updateStatusOfTicket(1,'closed')
