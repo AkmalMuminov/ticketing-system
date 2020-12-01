@@ -4,10 +4,36 @@ import mysql.connector
 
 conn = mysql.connector.connect(user='root',password='root_password',host='69.121.70.211',database='ticketingSystem',auth_plugin='mysql_native_password')
 
-
 cursor = conn.cursor()
 
-cursor.execute('SELECT id FROM ticketingSystem.users')
+def queryByID(idNumber):
+    ticket = []
+    cursor.execute('SELECT * FROM ticketingSystem.tickets WHERE ID = '+str(idNumber))
+    for row in cursor:
+        ticket.append(row)
+    return ticket
 
-for row in cursor:
-    print(row)
+def queryByKeyword(words):
+    tickets = []
+    cursor.execute("SELECT * FROM ticketingSystem.tickets WHERE name LIKE '%s' OR description LIKE '%s'" % (str('%'+words+'%'), str('%'+words+'%')))
+    for row in cursor:
+        tickets.append(row)
+    return tickets
+
+def queryByStatus(status):
+    tickets = []
+    cursor.execute("SELECT * FROM ticketingSystem.tickets WHERE status = '%s'" % str(status))
+    for row in cursor:
+        tickets.append(row)
+    return tickets
+
+def updateStatusOfTicket(ticketID, ticketStatus):
+    if(ticketStatus.lower() == 'open'):
+        ticketStatus = 'Closed'
+    else:
+        ticketStatus = 'Open'
+    cursor.execute("UPDATE ticketingSystem.tickets SET status = '%s' WHERE ID = %s" % (str(ticketStatus), str(ticketID)))
+
+searcher = "closed"
+
+updateStatusOfTicket(1,'closed')
