@@ -36,4 +36,4 @@ def updateStatusOfTicket(ticketID, ticketStatus):
 
 searcher = "closed"
 
-updateStatusOfTicket(1,'closed')
+print(queryByKeyword('test'))
