@@ -53,8 +53,7 @@ def updateStatusOfTicket(ticketID, ticketStatus):
         else:
             ticketStatus = 'Open'
         cursor.execute("UPDATE ticketingSystem.tickets SET status = '%s' WHERE ID = %s" % (str(ticketStatus), str(ticketID)))
-        return 'Ticket Updated'
-    
+        return 'Ticket Updated'    
 
 # doesUserExist: This function takes a username and checks against our database to see if there's a match.
 # Return true: The inputted username exists in our SQL database.
@@ -73,6 +72,14 @@ def doesUserExist(userName):
 def addTicket(name, description, status):
     sql = "INSERT INTO tickets (name, description, date, status) VALUES (%s, %s, %s, %s)"
     val = (str(name), str(description), formatted_date, str(status))
+    cursor.execute(sql, val)
+
+# addUser: This function adds a new user to the database. Input the username and password.
+# Note that the user's ID will be automatically assigned with SQL's auto-increment.
+# Example: addUser('PythonTest', 'abc123')
+def addUser(userName, password):
+    sql = "INSERT INTO users (userName, password) VALUES (%s, %s)"
+    val = (str(userName), str(password))
     cursor.execute(sql, val)
 
 #searcher = "closed"
