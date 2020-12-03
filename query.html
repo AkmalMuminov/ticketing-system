@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ticketing</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="script.js"></script>
+    </head>
+
+    <body>
+         <!-- Navbar -->
+         <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <div class="container">
+             <div class="navbar-header">
+               <a class="navbar-brand light" href="#">Admins page</a>
+               </button>
+             </div>
+           </div>
+         </nav>
+<!--end of Navbar -->
+
+<div class="view" style="background-image: url('photos/back.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+
+
+<div class="container">
+<h1>Ticketing </h1>
+
+<form class="form-inline">
+
+    <div class="md-form my-0">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> <!-- seach field-->
+</form>
+<br>
+<br>
+    <div class="btn-group dropright">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Ticket status
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+        <a class="dropdown-item" href="#">Open</a>
+        <a class="dropdown-item" href="#">Closed</a>
+      </div>
+    </div>
+<br>
+<br>
+    <input class="btn btn-primary" type="submit" value="Submit">
+
+    </div>
+
+</div>
+<!-- https://stackoverflow.com/questions/24620741/get-selected-item-value-from-bootstrap-dropdown-with-specific-id to grab values from dropdown-->
+
+<div class="container" id="update"> <h1>Here we gonna put the list from db</h1></div>
+
+
+
+</body>
+
+</html>

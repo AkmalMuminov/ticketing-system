@@ -1,13 +1,13 @@
-function login () {
+  $(document).ready(function(){
 
-let login = document.getElementById("login").value;
-let password = document.getElementById("password").value;
+//https://forum.jquery.com/topic/how-to-load-different-page-content-using-jquery-ajax
 
-if ( login === "admin" && password === "admin"){
+    $('a').click(function(e) {
+        e.preventDefault(); // stops the default action of clicking on the link
+        var pageToLoad = $(this).attr('href'); // gets the href of the clicked link
+        //window.alert(pageToLoad);
+        $('#page').load(pageToLoad); // loads the remote page into the content div without refresh
+    });
 
-  window.location.href = "layout.html";}
 
-else {
-  window.alert("fail");
-}
-}
+  });

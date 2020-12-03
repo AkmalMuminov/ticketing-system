@@ -1,19 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ticketing</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="script.js"></script>
+    </head>
 
-    <h1>Ticketing System Sign In Page</h1>
-    <!-- <ul>
-        {% for ticket in tickets %}
-            <li>
-                <a href="{% url 'ticket' ticket.id %}">
-                    ticket {{ ticket.id }}: {{ ticket.origin }} to {{ ticket.destination }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul> -->
+    <body>
 
-    <input type="text" id="login" name="login" required
-           size="10">
-<br>
-    <input type="text" id="password" name="password" required
-        size="10">
-<br>
-    <input type="submit" value="Log in">
+<div id="page">
+         <!-- Navbar -->
+         <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+           <a class="navbar-brand" href="index.html">Homepage</a>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+           </button>
+
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul class="navbar-nav mr-auto">
+               <li class="nav-item">
+                 <a class="nav-link" href="admins.html">Admins page</a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" href="users.html">For New Users</a>
+               </li>
+             </ul>
+           </div>
+         </nav>
+
+<!--end of Navbar -->
+
+
+
+<div class="view" style="background-image: url('photos/back.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+
+
+<div class="container">
+
+ <h1><strong>Ticketing System Sign In Page</strong></h1>
+
+</div>
+
+<div class="w-25 p-3" style="background-color: #eee;">
+<form class="p-4">
+  <div class="form-group">
+    <label for="exampleDropdownFormEmail2">Username</label>
+    <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <label for="exampleDropdownFormPassword2">Password</label>
+    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+  </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="users.html">New around here? Sign up</a>
+</div>
+
+</div>
+
+
+
+
+
+</div>
+
+<div class="dropdown-menu">
+  <form class="px-4 py-3">
+    <div class="form-group">
+      <label for="exampleDropdownFormUsername1">Username</label>
+      <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+    </div>
+    <div class="form-group">
+      <label for="exampleDropdownFormPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+  <div class="dropdown-divider"></div>
+  <a class="dropdown-item" href="users.html">New around here? Sign up</a>
+</div>
+
+
+  </body>
+
+</html>
