@@ -24,6 +24,7 @@
 <div id="containerBody" style="background-image: url('photos/back.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
 
 <div class="c">
+
 <div class="a">
 
  <h1 id="title"><strong>Ticketing System Sign In Page</strong></h1>
@@ -31,46 +32,41 @@
 </div>
 
 <div class="b" id="login" style="background-color: #eee;">
-<form class="p-4">
+<form class="p-4" action="signin.php" method="get">
   <div class="form-group">
-    <input type="email" class="form-control" id="userName" placeholder="Username">
+    <input class="form-control" name="userName" placeholder="Username">
     <br><br><br><br><br>
-    <input type="password" class="form-control" id="passWord" placeholder="Password">
+    <input type="password" class="form-control" name="passWord" placeholder="Password">
   </div>
-    <button type="submit" class="btn btn-primary" onclick="">Sign in</button>
+    <button id="signin" class="btn btn-primary">Sign in</button>
     </form>
   <div class="dropdown-divider"></div>
   <a href="users.html">New around here? Sign up</a>
 </div>
-</div>
 
-
-
-
-
-
-
-
-
-<div class="dropdown-menu">
-  <form class="px-4 py-3">
-    <div class="form-group">
-      <label for="exampleDropdownFormUsername1">Username</label>
-      <input type="email" class="form-control" id="userName" placeholder="email@example.com">
-    </div>
-    <div class="form-group">
-      <label for="exampleDropdownFormPassword1">Password</label>
-      <input type="password" class="form-control" id="passWord" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
-  </form>
-  <div class="dropdown-divider"></div>
-  <a href="users.html" id="link">New around here? Sign up</a>
 </div>
 
 </div>
 
 
   </body>
-
+  <!--<script>
+    $(document).ready(function(){
+      $('#signin').click(function(){
+        $.ajax({
+          type: 'GET',
+          url: 'signin.php',
+          data: {'username' : $('#userName').val(),
+                'password' : $('#password').val()},
+          success: function(){
+            alert('Invalid username or password. Please try again.')
+            },
+          failure: function(){
+            alert('Invalid username or password. Please try again.')
+          }
+          });
+        });
+      });//Ending of Signin Function
+  </script>
+-->
 </html>

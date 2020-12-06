@@ -33,15 +33,15 @@
 </form>
 <br>
 <br>
-    <div class="btn-group dropright">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Ticket status
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
+      <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
         <a class="dropdown-item" href="#">Open</a>
+        <br><br><br><br><br><br><br><br><br><br><br>
         <a class="dropdown-item" href="#">Closed</a>
-      </div>
-    </div>
+      </div>-->
+      <select id='status'>
+        <option value = 'Open'>Open</option>
+        <option value = 'Closed'>Closed</option>
+      </select>
 <br>
 <br>
     <input class="btn btn-primary" type="submit" value="Submit">
@@ -51,7 +51,22 @@
 </div>
 <!-- https://stackoverflow.com/questions/24620741/get-selected-item-value-from-bootstrap-dropdown-with-specific-id to grab values from dropdown-->
 
-<div class="container" id="update"> <h1>Here we gonna put the list from db</h1></div>
+<div class="container">
+<div id="update"> <h1>Here we gonna put the list from db</h1>
+  <script>
+    $(document).ready(function(){
+      $.ajax({
+        url: 'grabTickets.php',
+        success: function(msg){
+          $('#update').html(msg);
+        }
+      });
+    });
+  </script>
+
+</div>
+</div>
+
 
 
 
