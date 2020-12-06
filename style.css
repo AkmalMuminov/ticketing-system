@@ -22,7 +22,8 @@ margin: 0px;
 {
 	text-align:center;
 	font-size:1.5vw;
-	background-color:#000000;
+  background-color:#000000;
+  line-height: 1.5px;
 	top:0px;
   width:100%;
   padding: 20px;
@@ -77,9 +78,21 @@ h1{
   width: 100%;
   height: 100%;
   margin: auto;
-  padding: 10px;
+}
+
+#inputsForQuery{
+  vertical-align: top;
+  text-align: center;
+  margin: auto;
+  display: inline-block;
 }
 
 div.tr{
   width: 400px;
+}
+
+#queryForm{
+  width: 70%;
+  text-align: center;
+  margin: auto;
 }

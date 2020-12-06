@@ -26,10 +26,45 @@
 <div class="container">
 <h1>Ticketing </h1>
 
-<form class="form-inline">
+<form id = "queryForm">
+    <div id="inputsForQuery">
 
-    <div class="md-form my-0">
-    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> <!-- seach field-->
+      <label for="queryID">Query ID</label>
+    <input class="radio-inline" id="queryID" value="1" type="radio" name="radAnswer" placeholder="Query ID" aria-label="Search">
+
+      <label for="queryKeyword">Query Keyword</label>
+    <input class="radio-inline" id="queryKeyword" value="2" type="radio" name="radAnswer" placeholder="Query Name" aria-label="Search">
+
+      <label for="queryUser">Last Accesssed User</label>
+    <input class="radio-inline" id="queryUser" value="3" type="radio" name="radAnswer" placeholder="Last accessed User" aria-label="Search">
+
+      <label for="queryStatus">Query Status</label>
+    <input class="radio-inline" id="queryStatus" value="4" type="radio" name="radAnswer" placeholder="Closed/Open" aria-label="Search">
+
+      <label for="queryDate">Query Date</label>
+    <input class="radio-inline" id="queryDate" value="5" type="radio" name="radAnswer" placeholder="Date(MM-DD-YYYY)" aria-label="Search">
+
+    <input class="form-control mr-sm-2" type="text" id="searchBar" placeholder="Search">
+    
+    <input  id="queryFormSubmit" type="button" value="Submit"> <!-- seach field-->
+    </div>
+    <script>
+        $(document).ready(function(){
+          $('#queryFormSubmit').click(function(){
+            $.ajax({
+              type: 'GET',
+              url: 'queryDB.php',
+              data: {
+                typeToQuery : $("#queryForm input[type='radio']:checked").val(),
+                queryInfo : $("#searchBar").val()
+              },
+              success:function(msg){
+                $('#update').html(msg);
+              }
+            });
+          });
+        });
+    </script>
 </form>
 <br>
 <br>
@@ -38,21 +73,16 @@
         <br><br><br><br><br><br><br><br><br><br><br>
         <a class="dropdown-item" href="#">Closed</a>
       </div>-->
-      <select id='status'>
-        <option value = 'Open'>Open</option>
-        <option value = 'Closed'>Closed</option>
-      </select>
 <br>
 <br>
-    <input class="btn btn-primary" type="submit" value="Submit">
 
-    </div>
+    
 
 </div>
 <!-- https://stackoverflow.com/questions/24620741/get-selected-item-value-from-bootstrap-dropdown-with-specific-id to grab values from dropdown-->
 
 <div class="container">
-<div id="update"> <h1>Here we gonna put the list from db</h1>
+<div id="update">
   <script>
     $(document).ready(function(){
       $.ajax({

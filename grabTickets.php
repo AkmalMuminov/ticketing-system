@@ -2,13 +2,11 @@
     $command = escapeshellcmd("py -c \"import connectionToSql; connectionToSql.queryDefault()\"");
     $output = shell_exec($command);
     $output = explode(",",$output);
-    #$output = implode($output);
-    #$output = preg_split('/\s+/',$output);
     echo "<table border = '1'>";
     echo "<tr>";
     $counter = 0;
     for($i=0; $i< sizeof($output); $i++){
-            if($counter == 5 ){
+            if($counter == 8 ){
                $counter = 0;
                echo "<tr>"; 
             }

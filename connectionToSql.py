@@ -49,7 +49,8 @@ def queryDefault():
 def queryByID(idNumber):
     cursor.execute('SELECT * FROM ticketingSystem.tickets WHERE ID = '+str(idNumber))
     ticket = sqlToArray(cursor)
-    return ticket
+    ticket = arrayCleaner(ticket)
+    print(ticket)
 
 # queryByKeyword: This function uses passed word and checks if it char/string exists in ANY ticket name or description.
 # Return Array: An array is returned if the word is associated with a ticket, the array is the ticket(s) that contains the word.
@@ -57,10 +58,11 @@ def queryByID(idNumber):
 def queryByKeyword(words):
     cursor.execute("SELECT * FROM ticketingSystem.tickets WHERE name LIKE '%s' OR description LIKE '%s'" % (str('%'+words+'%'), str('%'+words+'%')))
     tickets = sqlToArray(cursor)
+    tickets = arrayCleaner(tickets)
     if not tickets:
         return 'The entered word does not exist in any existing ticket.'
     else:
-        return tickets
+        print(tickets)
 
 # queryByStatus: This function uses passed status and returns all tickets with that status.
 # Return Array: An array is returned if the status corresponds with a ticket in the DB, this array is the ticket(s) with the matching status.
@@ -69,7 +71,7 @@ def queryByStatus(status):
     cursor.execute("SELECT * FROM ticketingSystem.tickets WHERE status = '%s'" % str(status))
     tickets = sqlToArray(cursor)
     tickets = arrayCleaner(tickets)
-    return tickets
+    print(tickets)
 
 # updateStatusOfTicket: This function takes a uses the ticket ID to locate the ticket and then updates the ticket status based on the existing status.
 # Return string: Returns appropriate string based on if the ticket ID given exists in the Database.
