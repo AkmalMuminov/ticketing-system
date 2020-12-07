@@ -13,11 +13,11 @@
     <body>
           <!-- Navbar -->
           <nav class="navbar">
-            <a id="homePage" href="homepage.html">Homepage</a>
-            <a id="admins" href="editTickets.html">Edit Tickets</a>
+            <a id="homePage" href="homepage.html" >Homepage</a>
+            <a id="admins" href="" onclick=notLoggedIn()>Edit Tickets</a>
             <a id="users" href="newTicket.html">For New Tickets</a>
-            <a id="query" href="query.html">Check Tickets</a>
-            <a id="newUser" href="configureUsers.html">Register New User</a>
+            <a id="query" href="" onclick=notLoggedIn()>Check Tickets</a>
+            <a id="newUser" href="" onclick=notLoggedIn()>Register New User</a>
           </nav>
       <!--end of Navbar -->
 
@@ -33,16 +33,16 @@
 </div>
 
 <div class="b" id="login" style="background-color: #eee;">
-<form class="p-4" action="signin.php" method="get">
+<form class="p-4" method="get">
   <div class="form-group">
-    <input class="form-control" name="userName" placeholder="Username">
+    <input class="form-control" id="userName" placeholder="Username">
     <br><br><br><br><br>
-    <input type="password" class="form-control" name="passWord" placeholder="Password">
+    <input type="password" class="form-control" id="passWord" placeholder="Password">
   </div>
-    <button id="signin" class="btn btn-primary">Sign in</button>
+    <input type="button" id="signin" class="btn btn-primary" value="Sign In">
     </form>
   <div class="dropdown-divider"></div>
-  <a href="users.html">New around here? Sign up</a>
+  <!--<a href="users.html">New around here? Sign up</a>-->
 </div>
 
 </div>
@@ -51,23 +51,32 @@
 
 
   </body>
-  <!--<script>
+  <script>
     $(document).ready(function(){
       $('#signin').click(function(){
         $.ajax({
           type: 'GET',
           url: 'signin.php',
-          data: {'username' : $('#userName').val(),
-                'password' : $('#password').val()},
-          success: function(){
-            alert('Invalid username or password. Please try again.')
-            },
-          failure: function(){
-            alert('Invalid username or password. Please try again.')
-          }
+          data: {
+            username : $('#userName').val(),
+            password : $('#passWord').val()
+          },
+          success: function(msg){
+              if(msg != 'Invalid Log in. Please Try Again.'){
+                location.href = msg;
+              }
+              else
+                alert(msg);
+            }
           });
         });
       });//Ending of Signin Function
   </script>
--->
+  <script>
+    function notLoggedIn(){
+      alert("You must log in to access this page.")
+
+    }
+  </script>
+
 </html>

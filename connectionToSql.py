@@ -171,6 +171,8 @@ def userLogin(userName, password):
     else:
         print('True')
 
+#userLogin('henryposada','11111')        
+
 
 #----------------------TEST CASES/ERRORS TO BE FIXED AND REMOVED ----------------------------------
 
