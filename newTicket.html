@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ticket submitting page for users</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!--<script src="script.js"></script>-->
+    </head>
+    <body>
+         <!-- Navbar -->
+         <nav class="navbar">
+          <a id="homePage" href="homepage.html">Homepage</a>
+          <a id="admins" href="editTickets.html">Edit Tickets</a>
+          <a id="users" href="newTicket.html">For New Tickets</a>
+          <a id="query" href="query.html">Check Tickets</a>
+          <a id="newUser" href="configureUsers.html">Register New User</a>
+        </nav>
+      <!--end of Navbar -->
+
+<div class="view" style="background-image: url('photos/back.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+
+<div class="container">
+
+
+<h1><strong>To create a ticket fill out the following fields</strong></h1>
+        <form id="newTicketForm">
+          <input type="text" id="ticketName" type="text" name="name" required placeholder="Ticket Name" maxlength="32">
+      <br>
+      <br>
+          <textarea rows="5" cols="50" type="text" name="descrip" id="ticketDescription" required placeholder = "Enter a description of your issue" maxlength="128"></textarea>
+      <br>
+      <br>
+          <input type="text" id="ticketCategory" name="category" placeholder="Category of issue"required  maxlength="32">
+      <br>
+      <br>
+          <input type="button" id="newTicketSubmit" value="Submit New Ticket">
+        </form>
+        <div id="texttesting">
+          Text here
+        </div>
+        <!--<script>
+        $("form:input").change(function(){
+          if($('#ticketName').val() !== "" && $('#ticketDescription').val() !== "" && $('#ticketCategory').val() !== ""){
+            $('#newTicketSubmit').removeAttr("disabled");
+          }
+          else{
+            $('#newTicketSubmit').attr("disabled");
+          }
+        });
+        </script>-->
+        <script>
+          $(document).ready(function(){
+            $('#newTicketSubmit').click(function(){
+              $.ajax({
+                type: 'GET',
+                url: 'newTicket.php',
+                data: {
+                  name: $('#ticketName').val(),
+                  descrip: $('#ticketDescription').val(),
+                  category: $('#ticketCategory').val()
+                },
+                success:function(msg){
+                  alert(msg);
+                }
+              });
+            });
+          });
+        </script>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Admins Log in page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!--<script src="script.js"></script>-->
+    </head>
+    <body>
+         <!-- Navbar -->
+         <nav class="navbar">
+          <a id="homePage" href="homepage.html">Homepage</a>
+          <a id="admins" href="editTickets.html">Edit Tickets</a>
+          <a id="users" href="newTicket.html">For New Tickets</a>
+          <a id="query" href="query.html">Check Tickets</a>
+          <a id="newUser" href="configureUsers.html">Register New User</a>
+        </nav>
+      <!--end of Navbar -->
+
+<div class="view" style="background-image: url('photos/back.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+
+
+<div id="adminSignIn">
+
+<h1><strong>Admin, please sign in</strong></h1>
+
+        <form>
+          <input type="text" id="ticketID" required placeholder="Ticket ID to be edited">
+      <br>
+      <br>
+          <input type="text" id="ticketName" placeholder="New Ticket Name">
+          <input type="text" id="ticketDescription" placeholder="Ticket Description addtion">
+          <input type="text" id="ticketCategory" placeholder="New Ticket Category">
+          <input type="text" id="ticketLastUser" placeholder="Your name">
+          <label>Close Ticket?</label><input type="checkbox" id="ticketStatus" placeholder="Ticket Status (Note: Closed Tickets cannot be reopened)">
+      <br>
+      <br>
+          <input type="button" id="ticketChanger" value = "Make Changes to Ticket" class="btn btn-primary">
+        </form>
+        <script>
+          $(document).ready(function(){
+            $('#ticketChanger').click(function(){
+              var closeTicketcheckbox = $('#ticketStatus').is(':checked');
+              $.ajax({
+                type: 'GET',
+                url: 'ticketEdit.php',
+                data: {
+                  ID : $('#ticketID').val(),
+                  name : $('#ticketName').val(),
+                  descrip : $('#ticketDescription').val(),
+                  category : $('#ticketCategory').val(),
+                  status : closeTicketcheckbox.toString(),
+                  lastUser : $('#ticketLastUser').val(),
+                },
+                success:function(msg){
+                  alert(msg)
+                }
+              });
+            });
+          });
+        </script>
+</div>
+</div>
+
+    </body>
+</html>

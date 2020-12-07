@@ -8,11 +8,13 @@ conn = mysql.connector.connect(user='root',password='root_password',host='69.121
 
 cursor = conn.cursor()
 
+
 def dateCleaner(date):
     date = date[14: len(date)-1]
     date = date.split(', ', 2)
     cleanDate = date[1]+'-'+date[2]+'-'+date[0]
     return cleanDate
+
 
 def queryCleaner(query):
     query = str(query)
@@ -20,8 +22,14 @@ def queryCleaner(query):
     indexEnd = query.index(")")
     cleanDate = dateCleaner(query[indexStart:indexEnd]+')')
     query = query[0:indexStart] + cleanDate + query[indexEnd+1:len(query)]
+    if 'date' in query:
+        indexStart = query.index("date")
+        indexEnd = query.index(")")
+        cleanDate = dateCleaner(query[indexStart:indexEnd]+')')
+        query = query[0:indexStart] + cleanDate + query[indexEnd+1:len(query)]
     query = query.replace("(",'').replace("'",'').replace(")",'')
     return query
+
 
 def arrayCleaner(arrayOfQueries):
     i = 0
@@ -29,19 +37,19 @@ def arrayCleaner(arrayOfQueries):
         arrayOfQueries[i] = queryCleaner(arrayOfQueries[i])
     return arrayOfQueries
 
+
 def sqlToArray(cursor):
     array = []
     for row in cursor:
         array.append(row)
     return array
 
+
 def queryDefault():
     cursor.execute('SELECT * FROM ticketingSystem.tickets')
     ticket = sqlToArray(cursor)
     ticket = arrayCleaner(ticket)
     print(ticket)
-
-#queryDefault()
 
 # queryByID: This function uses passed ID number and checks if it exists in the DB.
 # Return String: A string is returned when the ID number does not match a ticket in the DB.
@@ -50,7 +58,12 @@ def queryByID(idNumber):
     cursor.execute('SELECT * FROM ticketingSystem.tickets WHERE ID = '+str(idNumber))
     ticket = sqlToArray(cursor)
     ticket = arrayCleaner(ticket)
-    print(ticket)
+    if not ticket:
+        print('False')
+        return False
+    else:
+        print(ticket)
+        return ticket
 
 # queryByKeyword: This function uses passed word and checks if it char/string exists in ANY ticket name or description.
 # Return Array: An array is returned if the word is associated with a ticket, the array is the ticket(s) that contains the word.
@@ -73,19 +86,48 @@ def queryByStatus(status):
     tickets = arrayCleaner(tickets)
     print(tickets)
 
+
+def queryByLastUser(lastUser):
+    cursor.execute("SELECT * FROM ticketingSystem.tickets WHERE lastUser = '%s'" % str(lastUser))
+    tickets = sqlToArray(cursor)
+    tickets = arrayCleaner(tickets)
+    print(tickets)
+
+
+def queryByDate(date):
+    cursor.execute("SELECT * FROM ticketingSystem.tickets WHERE dateCreated = '%s' OR dateResolved = '%s'" % (str(date), str(date)))
+    tickets = sqlToArray(cursor)
+    tickets = arrayCleaner(tickets)
+    print(tickets)
+
 # updateStatusOfTicket: This function takes a uses the ticket ID to locate the ticket and then updates the ticket status based on the existing status.
 # Return string: Returns appropriate string based on if the ticket ID given exists in the Database.
-def updateStatusOfTicket(ticketID, ticketStatus):
+def updateStatusOfTicket(ticketID):
     checkExists = queryByID(ticketID)
     if not checkExists:
         return 'There is no ticket associated with this ticket ID.'
     else:
-        if(ticketStatus.lower() == 'open'):
-            ticketStatus = 'Closed'
-        else:
-            ticketStatus = 'Open'
-        cursor.execute("UPDATE ticketingSystem.tickets SET status = '%s' WHERE ID = %s" % (str(ticketStatus), str(ticketID)))
-        return 'Ticket Updated'    
+        cursor.execute("UPDATE ticketingSystem.tickets SET status = 'Closed', dateResolved = '%s' WHERE ID = %s" % (formatted_date, str(ticketID)))
+        conn.commit()
+        return 'Ticket Updated'
+
+
+def updateCategory(ticketID, newCat):
+    cursor.execute("UPDATE ticketingSystem.tickets SET category = '%s' WHERE ID = %s" % (str(newCat), str(ticketID)))
+    conn.commit()
+
+def updateName(ticketID, newName):
+    cursor.execute("UPDATE ticketingSystem.tickets SET name = '%s' WHERE ID = %s" % (str(newName), str(ticketID)))
+    conn.commit()
+
+def updateDescription(ticketID, newDescrip):
+    cursor.execute("UPDATE ticketingSystem.tickets SET description = '%s' WHERE ID = %s" % (str(newDescrip), str(ticketID)))
+    conn.commit()
+
+def updateLastUser(ticketID, newLastUser):
+    cursor.execute("UPDATE ticketingSystem.tickets SET lastUser = '%s' WHERE ID = %s" % (str(newLastUser), str(ticketID)))
+    conn.commit()
+
 
 # doesUserExist: This function takes a username and checks against our database to see if there's a match.
 # Return true: The inputted username exists in our SQL database.
@@ -98,13 +140,16 @@ def doesUserExist(userName):
     else:
         return True
 
+
 # addTicket: This function adds a new ticket to the databse. Input the name of the ticket, a description, and the ticket status.
 # Note that ID will automatically be filled in with SQL's auto-increment, and the date will automatically fill in with the time of execution. 
 # Example: addTicket('Python ticket Testing', 'Adding ticket with python', 'closed')
-def addTicket(name, description, status):
-    sql = "INSERT INTO tickets (name, description, date, status) VALUES (%s, %s, %s, %s)"
-    val = (str(name), str(description), formatted_date, str(status))
+def addTicket(name, description, status, lastUser, category):
+    sql = "INSERT INTO tickets (name, description, status, lastUser, category, dateCreated) VALUES (%s, %s, %s, %s, %s, %s)"
+    val = (str(name), str(description), str(status), str(lastUser), str(category), formatted_date)
     cursor.execute(sql, val)
+    conn.commit()
+
 
 # addUser: This function adds a new user to the database. Input the username and password.
 # Note that the user's ID will be automatically assigned with SQL's auto-increment.
@@ -113,6 +158,7 @@ def addUser(userName, password):
     sql = "INSERT INTO users (userName, password) VALUES (%s, %s)"
     val = (str(userName), str(password))
     cursor.execute(sql, val)
+    conn.commit()
 
 
 def userLogin(userName, password):
@@ -125,7 +171,6 @@ def userLogin(userName, password):
     else:
         print('True')
 
-#userLogin("henryposada","11111")
 
 #----------------------TEST CASES/ERRORS TO BE FIXED AND REMOVED ----------------------------------
 

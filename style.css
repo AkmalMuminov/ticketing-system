@@ -32,7 +32,7 @@ margin: 0px;
 .navbar a{
   font-size: 20px;
   color: #f4f4f4;
-  width: 25%;
+  width: 20%;
 }
 
 div.b{
@@ -95,4 +95,8 @@ div.tr{
   width: 70%;
   text-align: center;
   margin: auto;
+}
+
+#adminSignIn{
+  margin: 0px;
 }

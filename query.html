@@ -14,9 +14,10 @@
          <!-- Navbar -->
          <nav class="navbar">
           <a id="homePage" href="homepage.html">Homepage</a>
-          <a id="admins" href="admins.html">Admins page</a>
-          <a id="users" href="users.html">For New Users</a>
+          <a id="admins" href="editTickets.html">Edit Tickets</a>
+          <a id="users" href="newTicket.html">For New Tickets</a>
           <a id="query" href="query.html">Check Tickets</a>
+          <a id="newUser" href="configureUsers.html">Register New User</a>
         </nav>
       <!--end of Navbar -->
 
@@ -82,6 +83,7 @@
 <!-- https://stackoverflow.com/questions/24620741/get-selected-item-value-from-bootstrap-dropdown-with-specific-id to grab values from dropdown-->
 
 <div class="container">
+<!--Ticket Headers need to go here-->
 <div id="update">
   <script>
     $(document).ready(function(){
@@ -92,12 +94,15 @@
         }
       });
     });
+    $(document).ajaxComplete(function(){
+        $('#update').css({"table-border" : "20px" });
+});
   </script>
 
 </div>
 </div>
 
-
+</div>
 
 
 </body>
