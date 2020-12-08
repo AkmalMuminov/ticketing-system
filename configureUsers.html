@@ -9,7 +9,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <!--<script src="script.js"></script>-->
     </head>
-    <body>
+    <body style="background-image: url('photos/back.jpeg'); background-repeat: repeat; background-size: cover; background-position: center center;">
          <!-- Navbar -->
          <nav class="navbar">
           <a id="homePage" href="homepage.html">Homepage</a>
@@ -26,7 +26,10 @@
 <div id="adminSignIn">
 
 <h1><strong>New User Creation</strong></h1>
-
+      <br>
+      <br>
+      <br>
+      <div class="b1 container" style="background-color: #eee;" id="newUserForm">
         <form>
       <br>
       <br>
@@ -36,6 +39,7 @@
       <br>
           <input type="button" id="userMaker" value = "Create new user" class="btn btn-primary">
         </form>
+      </div>
         <script>
           $(document).ready(function(){
             $('#userMaker').click(function(){

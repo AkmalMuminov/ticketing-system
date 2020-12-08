@@ -40,7 +40,7 @@ div.b{
   margin: 0px;
   width: 30%;
   height: 30%;
-  margin-left: 50px;
+  margin-left: 35%;
 } 
 
 div.b1{
@@ -87,7 +87,6 @@ h1{
 #update{
   width: 100%;
   height: 100%;
-  margin: auto;
 }
 
 #inputsForQuery{
@@ -97,18 +96,113 @@ h1{
   display: inline-block;
 }
 
+#ticketToEdit{
+  table-layout: fixed;
+  width: 100%;
+  margin-left: 5%;
+  padding: 10px;
+}
+#ticketToEditHeader{
+  margin-left: 43.5%;
+}
+
+#ticketToEdit td{
+  table-layout: fixed;
+  border: 1px solid black;
+  width: 12%;
+  text-align: center;
+  overflow: hidden;
+}
+
 div.tr{
   width: 400px;
 }
+
+#queryHeader{
+  table-layout: fixed;
+  border: 1px solid black;
+  width: 100%;
+}
+
+#queryHeader th{
+  table-layout: fixed;
+  border: 1px solid black;
+  width: 12%;
+}
+
+#update{
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100% !important;
+  margin: 0%;
+  padding: 0%;
+}
+
+#update tr{
+  width: 100%;
+  padding: 0%;
+}
+
+#update td{
+  border: 1px solid black;
+  width: 12%;
+  text-align: center;
+  overflow: auto;
+  padding: 0%;
+  margin: 0%;
+}
+
 
 #queryForm{
   width: 70%;
   text-align: center;
   margin: auto;
+  padding: 15px;
 }
 
 #adminSignIn{
   margin: 0px;
+}
+
+#newTicketForm{
+  text-align: center;
+}
+
+#newTicketForm.input{
+  width: 50%;
+}
+
+#ticketsEdit{
+  margin-left: 35%;
+}
+
+#ticketsEdit input{
+  width: 50%;
+}
+
+#ticketsEdit #ticketStatus{
+  width: 15%;
+}
+
+#newUserForm{
+  margin-left: 35%;
+}
+
+#newUserForm input{
+  width: 35%;
+}
+
+#searchBarQuery{
+  margin-left: 33%;
+}
+
+#queryTicketsForm{
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#testingDiv{
+  text-align: center;
 }
 
 .mar {

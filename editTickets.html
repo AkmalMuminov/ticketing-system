@@ -9,7 +9,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <!--<script src="script.js"></script>-->
     </head>
-    <body>
+    <body style="background-image: url('photos/back.jpeg'); background-repeat: repeat; background-size: cover; background-position: center center;">
          <!-- Navbar -->
          <nav class="navbar">
           <a id="homePage" href="homepage.html">Homepage</a>
@@ -20,12 +20,12 @@
         </nav>
       <!--end of Navbar -->
 
-<div class="view" style="background-image: url('photos/back.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
 
 <div id="adminSignIn">
 
-<h1><strong>Admin, please sign in</strong></h1>
-<div class="b1 container" style="background-color: #eee;">
+<h1><strong>To get started, enter a Ticket ID</strong></h1>
+ 
+<div class="b1 container" style="background-color: #eee;" id="ticketsEdit">
   <div class="form-group">
         <form>
       <br>
@@ -51,7 +51,11 @@
           <input type="button" id="ticketChanger" value = "Make Changes to Ticket" class="btn btn-primary">
         </form>
    </div>
-</div>        
+</div>
+<br><br><br>
+<h3 id="ticketToEditHeader">Ticket Preview</h3>
+<div id = "ticketToEdit">
+</div>     
         <script>
           $(document).ready(function(){
             $('#ticketChanger').click(function(){
@@ -69,6 +73,20 @@
                 },
                 success:function(msg){
                   alert(msg)
+                }
+              });
+            });
+          });
+        </script>
+        <script>
+          $(document).ready(function(){
+            $('#ticketID').change(function(){
+              $.ajax({
+                type: 'GET',
+                url: 'editTicketViewer.php',
+                data: {id : $('#ticketID').val()},
+                success:function(msg){
+                  $("#ticketToEdit").html(msg);
                 }
               });
             });

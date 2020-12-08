@@ -10,7 +10,7 @@
         <!--<script src="script.js"></script>-->
     </head>
 
-    <body>
+    <body style="background-image: url('photos/back.jpeg'); background-repeat: repeat; background-size: cover; background-position: center center;">
          <!-- Navbar -->
          <nav class="navbar">
           <a id="homePage" href="homepage.html">Homepage</a>
@@ -21,34 +21,36 @@
         </nav>
       <!--end of Navbar -->
 
-<div class="view" style="background-image: url('photos/back.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+<div class="view" id="view" style="background-image: url('photos/back.jpeg'); background-repeat: repeat; background-size: cover; background-position: center center;">
 
 
 <div class="container">
 <h1>Ticketing </h1>
-
+<div style="background-color: #eee;" id="queryTicketsForm">
 <form id = "queryForm">
     <div id="inputsForQuery">
 
       <label for="queryID">Query ID</label>
     <input class="radio-inline" id="queryID" value="1" type="radio" name="radAnswer" placeholder="Query ID" aria-label="Search">
-
+    &nbsp;&nbsp;&nbsp;
       <label for="queryKeyword">Query Keyword</label>
     <input class="radio-inline" id="queryKeyword" value="2" type="radio" name="radAnswer" placeholder="Query Name" aria-label="Search">
-
+    &nbsp;&nbsp;&nbsp;
       <label for="queryUser">Last Accesssed User</label>
     <input class="radio-inline" id="queryUser" value="3" type="radio" name="radAnswer" placeholder="Last accessed User" aria-label="Search">
 
       <label for="queryStatus">Query Status</label>
     <input class="radio-inline" id="queryStatus" value="4" type="radio" name="radAnswer" placeholder="Closed/Open" aria-label="Search">
-
+    &nbsp;&nbsp;&nbsp;
       <label for="queryDate">Query Date</label>
     <input class="radio-inline" id="queryDate" value="5" type="radio" name="radAnswer" placeholder="Date(MM-DD-YYYY)" aria-label="Search">
 
-    <input class="form-control mr-sm-2" type="text" id="searchBar" placeholder="Search">
+    <input class="form-control mr-sm-2" type="text" id="searchBarQuery" placeholder="Search">
     <br>
-    <input  id="queryFormSubmit" class="btn btn-primary" type="button" value="Submit">  <!-- seach field-->
+    <input  id="queryFormSubmit"  type="button" value="Submit">  <!-- seach field-->
     </div>
+</form>
+</div>
     <script>
         $(document).ready(function(){
           $('#queryFormSubmit').click(function(){
@@ -57,12 +59,10 @@
               url: 'queryDB.php',
               data: {
                 typeToQuery : $("#queryForm input[type='radio']:checked").val(),
-                queryInfo : $("#searchBar").val()
+                queryInfo : $("#searchBarQuery").val()
               },
               success:function(msg){
-                $('#update').css({"background-color": "#eee", "padding":"5px"});
-                $('#update').addClass('container');
-                $('#update').append("<br>");
+                $('#update').html(msg);
               }
             });
           });
@@ -85,6 +85,20 @@
 <!-- https://stackoverflow.com/questions/24620741/get-selected-item-value-from-bootstrap-dropdown-with-specific-id to grab values from dropdown-->
 
 <div class="container">
+  <div>
+    <table id="queryHeader">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Current Assignee</th>
+        <th>Category</th>
+        <th>Date Submiited</th>
+        <th>Date Resolved</th>
+      </tr>
+    </table>
+  </div>
 <!--Ticket Headers need to go here-->
 <div id="update">
   <script>
@@ -97,7 +111,7 @@
       });
     });
     $(document).ajaxComplete(function(){
-        $('#update').css({"table-border" : "20px" });
+       // $('#update').css({"table-border" : "20px" });
 });
   </script>
 

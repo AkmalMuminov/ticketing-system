@@ -31,7 +31,9 @@
     #$output .= shell_exec($command5);
 
     $output = explode(",",$output);
-    echo "<table border = '1'>";
+    $output = str_replace("'","",$output);
+    $output = str_replace("[","",$output);
+    $output = str_replace("]","",$output);
     echo "<tr>";
     $counter = 0;
     for($i=0; $i< sizeof($output); $i++){

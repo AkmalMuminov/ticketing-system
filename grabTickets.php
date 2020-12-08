@@ -2,6 +2,9 @@
     $command = escapeshellcmd("py -c \"import connectionToSql; connectionToSql.queryDefault()\"");
     $output = shell_exec($command);
     $output = explode(",",$output);
+    $output = str_replace("'","",$output);
+    $output = str_replace("[","",$output);
+    $output = str_replace("]","",$output);
     echo "<table border = '1'>";
     echo "<tr>";
     $counter = 0;
