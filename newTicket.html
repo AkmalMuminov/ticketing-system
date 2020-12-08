@@ -26,7 +26,12 @@
 
 
 <h1><strong>To create a ticket fill out the following fields</strong></h1>
+
+<div class="container"  style="background-color: #eee;">
+  <div class="form-group mar">
         <form id="newTicketForm">
+          <br>
+          <br>
           <input type="text" id="ticketName" type="text" name="name" required placeholder="Ticket Name" maxlength="32">
       <br>
       <br>
@@ -36,8 +41,12 @@
           <input type="text" id="ticketCategory" name="category" placeholder="Category of issue"required  maxlength="32">
       <br>
       <br>
-          <input type="button" id="newTicketSubmit" value="Submit New Ticket">
+          <input type="button" id="newTicketSubmit" class="btn btn-primary" value="Submit New Ticket">
+      <br>
+      <br>
         </form>
+  </div>
+</div>
         <script>
           $(document).ready(function(){
             $('#newTicketSubmit').click(function(){
@@ -56,6 +65,7 @@
             });
           });
         </script>
+</div>
 </div>
 
     </body>

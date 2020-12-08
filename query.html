@@ -46,8 +46,8 @@
     <input class="radio-inline" id="queryDate" value="5" type="radio" name="radAnswer" placeholder="Date(MM-DD-YYYY)" aria-label="Search">
 
     <input class="form-control mr-sm-2" type="text" id="searchBar" placeholder="Search">
-    
-    <input  id="queryFormSubmit" type="button" value="Submit"> <!-- seach field-->
+    <br>
+    <input  id="queryFormSubmit" class="btn btn-primary" type="button" value="Submit">  <!-- seach field-->
     </div>
     <script>
         $(document).ready(function(){
@@ -60,7 +60,9 @@
                 queryInfo : $("#searchBar").val()
               },
               success:function(msg){
-                $('#update').html(msg);
+                $('#update').css({"background-color": "#eee", "padding":"5px"});
+                $('#update').addClass('container');
+                $('#update').append("<br>");
               }
             });
           });

@@ -22,24 +22,36 @@
 
 <div class="view" style="background-image: url('photos/back.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
 
-
 <div id="adminSignIn">
 
 <h1><strong>Admin, please sign in</strong></h1>
-
+<div class="b1 container" style="background-color: #eee;">
+  <div class="form-group">
         <form>
+      <br>
+      <br>
           <input type="text" id="ticketID" required placeholder="Ticket ID to be edited">
       <br>
       <br>
           <input type="text" id="ticketName" placeholder="New Ticket Name">
+          <br>
+          <br>
           <input type="text" id="ticketDescription" placeholder="Ticket Description addtion">
+          <br>
+          <br>
           <input type="text" id="ticketCategory" placeholder="New Ticket Category">
+          <br>
+          <br>
           <input type="text" id="ticketLastUser" placeholder="Your name">
+          <br>
+          <br>
           <label>Close Ticket?</label><input type="checkbox" id="ticketStatus" placeholder="Ticket Status (Note: Closed Tickets cannot be reopened)">
       <br>
       <br>
           <input type="button" id="ticketChanger" value = "Make Changes to Ticket" class="btn btn-primary">
         </form>
+   </div>
+</div>        
         <script>
           $(document).ready(function(){
             $('#ticketChanger').click(function(){
@@ -62,7 +74,7 @@
             });
           });
         </script>
-</div>
+  </div>
 </div>
 
     </body>
